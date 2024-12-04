@@ -1,0 +1,56 @@
+<div class="relative z-10 w-full shadow-md" [ngClass]="{'bg-black text-white': theme === 'dark', 'bg-white text-black': theme === 'light'}">
+    <!-- La classe ngClass applique une couleur de fond et de texte différente en fonction du thème -->
+    
+    <div class="container mx-auto py-4 md:py-0">
+      <div class="flex justify-between items-center">
+        <div>
+          <span class="text-3xl font-bold font-serif">Car Rental</span>
+        </div>
+  
+        <!-- Menu desktop (visible uniquement sur les écrans larges) -->
+        <nav class="hidden md:flex items-center space-x-8">
+          <ul class="flex gap-8">
+            <li *ngFor="let link of navLinks">
+              <a [href]="link.link" class="text-lg font-medium py-2 hover:text-primary hover:border-b-2 hover:border-primary transition-all">
+                {{ link.name }}
+              </a>
+            </li>
+  
+            <!-- Bouton pour basculer le mode sombre/claire -->
+            <li>
+              <button (click)="toggleTheme()" class="text-2xl">
+                <ng-container *ngIf="theme === 'dark'; else lightMode">
+                  <i class="bi bi-sun"></i> <!-- Icône de soleil pour le mode sombre -->
+                </ng-container>
+                <ng-template #lightMode>
+                  <i class="bi bi-moon"></i> <!-- Icône de lune pour le mode clair -->
+                </ng-template>
+              </button>
+            </li>
+          </ul>
+        </nav>
+  
+        <!-- Menu mobile (visible uniquement sur les petits écrans) -->
+        <div class="flex items-center gap-4 md:hidden">
+          <button (click)="toggleTheme()" class="text-2xl">
+            <ng-container *ngIf="theme === 'dark'; else lightMode">
+              <i class="bi bi-sun"></i> <!-- Icône de soleil pour le mode sombre -->
+            </ng-container>
+            <ng-template #lightMode>
+              <i class="bi bi-moon"></i> <!-- Icône de lune pour le mode clair -->
+            </ng-template>
+          </button>
+  
+          <!-- Icône de menu hamburger pour ouvrir/fermer le menu mobile -->
+          <button (click)="toggleMenu()">
+            <i *ngIf="!showMenu" class="bi bi-list text-2xl"></i> <!-- Icône du menu -->
+            <i *ngIf="showMenu" class="bi bi-x text-2xl"></i> <!-- Icône pour fermer le menu -->
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Menu mobile qui s'affiche lorsque showMenu est true -->
+    
+  </div>
+  
